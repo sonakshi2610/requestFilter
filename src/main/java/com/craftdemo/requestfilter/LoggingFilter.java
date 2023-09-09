@@ -19,9 +19,9 @@ import static com.craftdemo.requestfilter.Constants.THREAD_CONTEXT_TRACE_ID;
 @Slf4j
 public class LoggingFilter implements Filter {
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-            throws IOException, ServletException {
-        log.info("Request for URL came : {}", request.getServletContext().getContextPath());
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
+        log.info("Request for URL came : {}", ((CustomHeaderRequestWrapper) request).getRequestURL());
+        chain.doFilter(request, response);
     }
 
     @Override
