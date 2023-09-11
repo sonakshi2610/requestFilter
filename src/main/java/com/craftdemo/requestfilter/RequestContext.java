@@ -6,7 +6,6 @@ import lombok.experimental.FieldDefaults;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 import java.util.UUID;
@@ -36,5 +35,9 @@ public class RequestContext {
 
     public static Map<String, String> getThreadContextMap() {
         return MDC.getCopyOfContextMap();
+    }
+
+    public static void setMdcContext(Map<String, String> mdcContext) {
+        MDC.setContextMap(mdcContext);
     }
 }
