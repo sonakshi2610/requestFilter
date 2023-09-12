@@ -1,5 +1,8 @@
-package com.craftdemo.requestfilter;
+package com.craftdemo.requestfilter.security;
 
+import com.craftdemo.requestfilter.response.ErrorDto;
+import com.craftdemo.requestfilter.util.RequestContext;
+import com.craftdemo.requestfilter.response.ResponseDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
@@ -10,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.craftdemo.requestfilter.Constants.MESSAGE_FORBIDDEN;
+import static com.craftdemo.requestfilter.util.Constants.MESSAGE_FORBIDDEN;
 
 @Component
 public class CustomAuthEntryPoint implements AuthenticationEntryPoint {

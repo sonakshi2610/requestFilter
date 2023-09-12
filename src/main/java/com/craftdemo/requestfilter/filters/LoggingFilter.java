@@ -1,4 +1,4 @@
-package com.craftdemo.requestfilter;
+package com.craftdemo.requestfilter.filters;
 
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;

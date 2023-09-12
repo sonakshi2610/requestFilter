@@ -1,4 +1,4 @@
-package com.craftdemo.requestfilter;
+package com.craftdemo.requestfilter.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

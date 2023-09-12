@@ -1,4 +1,4 @@
-package com.craftdemo.requestfilter;
+package com.craftdemo.requestfilter.filters;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;

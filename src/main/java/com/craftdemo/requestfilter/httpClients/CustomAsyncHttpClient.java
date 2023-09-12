@@ -1,5 +1,6 @@
-package com.craftdemo.requestfilter;
+package com.craftdemo.requestfilter.httpClients;
 
+import com.craftdemo.requestfilter.util.RequestContext;
 import org.asynchttpclient.AsyncHttpClient;
 import org.asynchttpclient.DefaultAsyncHttpClient;
 import org.asynchttpclient.DefaultAsyncHttpClientConfig;
@@ -10,7 +11,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
-import static com.craftdemo.requestfilter.Constants.REQUEST_HEADER_TRACE_ID;
+import static com.craftdemo.requestfilter.util.Constants.REQUEST_HEADER_TRACE_ID;
 
 public class CustomAsyncHttpClient {
 

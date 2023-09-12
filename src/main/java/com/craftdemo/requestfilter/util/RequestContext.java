@@ -1,5 +1,6 @@
-package com.craftdemo.requestfilter;
+package com.craftdemo.requestfilter.util;
 
+import com.craftdemo.requestfilter.filters.CustomHeaderRequestWrapper;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
@@ -10,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 import java.util.UUID;
 
-import static com.craftdemo.requestfilter.Constants.REQUEST_HEADER_TRACE_ID;
-import static com.craftdemo.requestfilter.Constants.THREAD_CONTEXT_TRACE_ID;
-import static com.craftdemo.requestfilter.Constants.UNDER_SCORE;
+import static com.craftdemo.requestfilter.util.Constants.REQUEST_HEADER_TRACE_ID;
+import static com.craftdemo.requestfilter.util.Constants.THREAD_CONTEXT_TRACE_ID;
+import static com.craftdemo.requestfilter.util.Constants.UNDER_SCORE;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)

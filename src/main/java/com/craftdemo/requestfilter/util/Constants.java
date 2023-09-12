@@ -1,4 +1,4 @@
-package com.craftdemo.requestfilter;
+package com.craftdemo.requestfilter.util;
 
 public class Constants {
     public static final String REQUEST_HEADER_TRACE_ID = "tracer";

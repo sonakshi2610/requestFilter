@@ -1,5 +1,6 @@
-package com.craftdemo.requestfilter;
+package com.craftdemo.requestfilter.filters;
 
+import com.craftdemo.requestfilter.util.RequestContext;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
 

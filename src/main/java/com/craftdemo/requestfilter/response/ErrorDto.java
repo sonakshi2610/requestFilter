@@ -1,4 +1,4 @@
-package com.craftdemo.requestfilter;
+package com.craftdemo.requestfilter.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -9,19 +9,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-import java.io.Serializable;
+import java.util.Map;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Builder
-public class ResponseDto<T> implements Serializable {
-
-    T data;
-    String correlationId;
-    ErrorDto error;
-
+public class ErrorDto {
+    String code;
+    String message;
 }

@@ -1,5 +1,7 @@
-package com.craftdemo.requestfilter;
+package com.craftdemo.requestfilter.filters;
 
+import com.craftdemo.requestfilter.response.ErrorDto;
+import com.craftdemo.requestfilter.response.ResponseDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.filter.OncePerRequestFilter;
