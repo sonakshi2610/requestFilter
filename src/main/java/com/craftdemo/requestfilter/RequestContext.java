@@ -20,20 +20,28 @@ public class RequestContext {
     public static String getTraceId() {
         Object obj = MDC.get(THREAD_CONTEXT_TRACE_ID);
         if (obj == null) {
-            MDC.put(THREAD_CONTEXT_TRACE_ID, generateTraceId());
+            MDC.put(THREAD_CONTEXT_TRACE_ID, generateNewTraceId());
         }
         return MDC.get(THREAD_CONTEXT_TRACE_ID);
+    }
+
+    public static void setTraceId(String traceId) {
+        MDC.put(THREAD_CONTEXT_TRACE_ID, traceId);
     }
 
     public static String getHeaderTracer(HttpServletRequest request) {
         return request.getHeader(REQUEST_HEADER_TRACE_ID);
     }
 
-    public static String generateTraceId() {
+    public static void addHeaderTracer(CustomHeaderRequestWrapper request) {
+        request.addHeader(REQUEST_HEADER_TRACE_ID, getTraceId());
+    }
+
+    public static String generateNewTraceId() {
         return UUID.randomUUID().toString().replace(UNDER_SCORE, StringUtils.EMPTY);
     }
 
-    public static Map<String, String> getThreadContextMap() {
+    public static Map<String, String> getCopyOfThreadContext() {
         return MDC.getCopyOfContextMap();
     }
 

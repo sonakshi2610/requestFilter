@@ -22,22 +22,17 @@ public class CustomHeaderRequestWrapper extends HttpServletRequestWrapper {
 
     @Override
     public String getHeader(String name) {
-        // Check if the custom header is present, if not, delegate to the original request
-        String customHeaderValue = customHeaders.get(name);
-        return (customHeaderValue != null) ? customHeaderValue : super.getHeader(name);
+        return customHeaders.getOrDefault(name, super.getHeader(name));
     }
 
     @Override
     public Enumeration<String> getHeaderNames() {
         Set<String> headerNames = new HashSet<>();
         Enumeration<String> originalHeaders = super.getHeaderNames();
-
         while (originalHeaders.hasMoreElements()) {
             headerNames.add(originalHeaders.nextElement());
         }
-
         headerNames.addAll(customHeaders.keySet());
-
         return Collections.enumeration(headerNames);
     }
 }

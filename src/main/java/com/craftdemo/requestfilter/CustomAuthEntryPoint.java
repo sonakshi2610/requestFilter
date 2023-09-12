@@ -1,5 +1,6 @@
 package com.craftdemo.requestfilter;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -17,6 +18,14 @@ public class CustomAuthEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException ex)
             throws IOException {
-        response.sendError(HttpStatus.FORBIDDEN.value(), MESSAGE_FORBIDDEN);
+        ResponseDto<?> responseDto = ResponseDto.builder()
+                .error(ErrorDto.builder()
+                        .message(MESSAGE_FORBIDDEN)
+                        .code(HttpStatus.FORBIDDEN.name())
+                        .build())
+                .correlationId(RequestContext.getTraceId())
+                .build();
+        response.setStatus(HttpStatus.FORBIDDEN.value());
+        response.getWriter().write(new ObjectMapper().writeValueAsString(responseDto));
     }
 }

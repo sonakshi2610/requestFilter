@@ -17,8 +17,6 @@ public class WebSecurityConfig {
     public SecurityFilterChain apiSecurityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests()
-                .antMatchers("/service1/**", "/service2/success")
-                .permitAll()
                 .antMatchers("/service2/fail")
                 .denyAll()
                 .and()

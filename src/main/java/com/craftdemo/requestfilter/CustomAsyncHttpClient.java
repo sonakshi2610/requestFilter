@@ -22,8 +22,7 @@ public class CustomAsyncHttpClient {
     }
 
     public CompletableFuture<Response> executeGetWithMDC(String url) {
-        Map<String, String> mdcContext = RequestContext.getThreadContextMap();
-
+        Map<String, String> mdcContext = RequestContext.getCopyOfThreadContext();
         return CompletableFuture.supplyAsync(() -> {
             if (mdcContext != null) {
                 RequestContext.setMdcContext(mdcContext);

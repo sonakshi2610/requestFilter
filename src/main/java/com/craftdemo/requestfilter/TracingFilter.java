@@ -9,21 +9,16 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-
 import java.io.IOException;
-
-import static com.craftdemo.requestfilter.Constants.REQUEST_HEADER_TRACE_ID;
-import static com.craftdemo.requestfilter.Constants.THREAD_CONTEXT_TRACE_ID;
 
 public class TracingFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        String traceId = ((HttpServletRequest) request).getHeader(REQUEST_HEADER_TRACE_ID);
-        traceId = StringUtils.isEmpty(traceId) ? RequestContext.generateTraceId() : traceId;
-        MDC.put(THREAD_CONTEXT_TRACE_ID, traceId);
+        String requestHeaderTraceId = RequestContext.getHeaderTracer((HttpServletRequest) request);
+        RequestContext.setTraceId(StringUtils.isEmpty(requestHeaderTraceId) ? RequestContext.generateNewTraceId() : requestHeaderTraceId);
         CustomHeaderRequestWrapper requestWrapper = new CustomHeaderRequestWrapper((HttpServletRequest) request);
-        requestWrapper.addHeader(REQUEST_HEADER_TRACE_ID, traceId);
+        RequestContext.addHeaderTracer(requestWrapper);
         chain.doFilter(requestWrapper, response);
         MDC.clear();
     }
